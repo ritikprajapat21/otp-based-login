@@ -13,6 +13,9 @@ const UserSchema = Schema({
     type: String,
     required: true,
   },
+  otp: {
+    type: String,
+  },
 });
 
 export default mongoose.model.Users || mongoose.model("User", UserSchema);

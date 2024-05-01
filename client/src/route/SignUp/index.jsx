@@ -3,8 +3,8 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../../axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SignUp = () => {
       success: (data) => {
         console.log(data);
 
-        navigate("/signin");
+        navigate("/otp");
 
         return <p>User Created</p>;
       },
@@ -37,8 +37,6 @@ const SignUp = () => {
     const error = {};
     const emailre =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
-
-    console.log(values);
 
     if (!values.name) error.name = toast.error("Name required");
 
@@ -62,10 +60,10 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      rePassword: "",
+      name: "ritik",
+      email: "ritik@gmail.com",
+      password: "123456",
+      rePassword: "123456",
     },
     validate: validateSignUp,
     validateOnBlur: false,
@@ -102,8 +100,9 @@ const SignUp = () => {
             type="password"
             {...formik.getFieldProps("password")}
             placeholder="Password"
+            className="mb-0"
           />
-          <div className="flex flex-row mt-0 mb-2">
+          <div className="flex flex-row mt-0 mb-1">
             <p className="text-[12px] ml-1 inline text-center m-0 text-slate-400">
               Password must be atleast 6 characters.
             </p>
@@ -117,6 +116,9 @@ const SignUp = () => {
 
           <Button type="submit">Register</Button>
         </form>
+        <div className="mt-2 text-slate-300">
+          Already Registered? <Link to="/signin">Click Here</Link>
+        </div>
       </Card>
     </div>
   );

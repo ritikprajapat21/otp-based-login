@@ -5,6 +5,7 @@ import UserModel from "../model/User.model.js";
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
+  console.log(name, email, password);
   if (!email || !name || !password)
     return res
       .status(400)
@@ -19,8 +20,6 @@ export const registerUser = async (req, res) => {
     name,
     email,
     password: hashPassword,
-    mobile,
-    profile,
   });
 
   if (!result) return res.status(500).json({ message: "Server error" });
@@ -34,7 +33,7 @@ export const authenticateUser = async (req, res) => {
 
   const foundUser = await UserModel.findOne({ email }).exec();
 
-  if (!foundUser) return res.send(404).json({ message: "User not found" });
+  if (!foundUser) return res.status(404).json({ message: "User not found" });
 
   const match = await bcrypt.compare(pwd, foundUser.password);
 
@@ -49,7 +48,7 @@ export const authenticateUser = async (req, res) => {
     },
     process.env.TOKEN,
     {
-      expiresIn: "300s",
+      expiresIn: "15m",
     },
   );
 

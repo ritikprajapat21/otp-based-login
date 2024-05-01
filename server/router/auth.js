@@ -7,7 +7,7 @@ import {
 
 const authRouter = express.Router();
 
-authRouter.get("/register", registerUser);
+authRouter.post("/register", registerUser);
 
 authRouter.post("/auth", authenticateUser);
 

@@ -1,8 +1,8 @@
 import UserModel from "./model/User.model.js";
 
 export const authenticated = async (req, res, next) => {
+  console.log(req.body);
   let { email } = req.body;
-  email = !email ? req.params.email : email;
 
   if (!email) return res.status(400).json({ message: "Email Required!" });
 

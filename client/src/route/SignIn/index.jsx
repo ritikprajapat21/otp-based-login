@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth } from "../../context/auth";
-import { Axios } from "axios";
+import axios from "../../axios";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -11,17 +11,15 @@ import Button from "../../components/Button";
 const SignIn = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
-  const from = useLocation() || "/";
 
   const handleSubmit = ({ email, password }) => {
     const err = {};
 
-    const response = Axios.post(
+    const response = axios.post(
       "/user/auth",
       { email, password },
       {
         headers: { "Content-Type": "application/json" },
-        withCredentials: true,
       },
     );
 
@@ -31,13 +29,11 @@ const SignIn = () => {
         setAuth({
           email: res.data.user.email,
           name: res.data.user.name,
-          mobile: res.data.user.mobile,
           accessToken: res.data.accessToken,
         });
 
-        // To navigate to editor or from user redirected
-        from.pathname = from.pathname === "/signin" && "/";
-        navigate(from, { replace: true });
+        // To navigate to home or from user redirected
+        navigate("/otp", { replace: true });
 
         return "Verified";
       },
@@ -92,8 +88,8 @@ const SignIn = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "ritik@gmail.com",
+      password: "123456",
     },
     validateOnBlur: false,
     validateOnChange: false,
@@ -101,12 +97,12 @@ const SignIn = () => {
     onSubmit: (values) => handleSubmit(values),
   });
 
-  if (!auth?.user) {
+  if (auth?.email) {
     return (
-      <div className="block mx-auto">
-        <Card className="w-56 flex items-center p-4 h-52">
-          <p className="font-bold text-lg md:text-2xl">
-            You are already logged in.
+      <div className="mx-auto">
+        <Card className="w-96 text-center flex items-center p-4 h-52">
+          <p className="font-bold text-center text-lg md:text-2xl">
+            You are already logged in
           </p>
         </Card>
       </div>
@@ -136,6 +132,9 @@ const SignIn = () => {
             Log in
           </Button>
         </form>
+        <div className="mt-2 text-slate-300">
+          Not Registerd yet? <Link to="/signup">Click Here</Link>
+        </div>
       </Card>
     </div>
   );
