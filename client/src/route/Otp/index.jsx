@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../axios";
 import { useEffect } from "react";
 import { useAuth } from "../../context/auth";
+import key from "../../assets/key.svg";
 
 const OTP = () => {
   const { auth } = useAuth();
@@ -77,6 +78,7 @@ const OTP = () => {
         <form onSubmit={formik.handleSubmit}>
           <Input
             type="text"
+            icon={key}
             {...formik.getFieldProps("otp")}
             placeholder="Enter your OTP"
           />

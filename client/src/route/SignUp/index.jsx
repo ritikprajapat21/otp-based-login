@@ -6,6 +6,10 @@ import { Toaster, toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
+import email from "../../assets/email.svg";
+import key from "../../assets/key.svg";
+import user from "../../assets/user.svg";
+
 const SignUp = () => {
   const navigate = useNavigate();
 
@@ -86,18 +90,21 @@ const SignUp = () => {
         <form className="flex flex-col" onSubmit={formik.handleSubmit}>
           <Input
             type="text"
+            icon={user}
             {...formik.getFieldProps("name")}
             placeholder="First and last name"
           />
 
           <Input
             type="email"
+            icon={email}
             {...formik.getFieldProps("email")}
             placeholder="Email"
           />
 
           <Input
             type="password"
+            icon={key}
             {...formik.getFieldProps("password")}
             placeholder="Password"
             className="mb-0"
@@ -110,6 +117,7 @@ const SignUp = () => {
 
           <Input
             type="password"
+            icon={key}
             {...formik.getFieldProps("rePassword")}
             placeholder="Re-enter password"
           />

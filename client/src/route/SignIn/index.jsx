@@ -7,6 +7,8 @@ import axios from "../../axios";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import email from "../../assets/email.svg";
+import key from "../../assets/key.svg";
 
 const SignIn = () => {
   const { auth, setAuth } = useAuth();
@@ -118,12 +120,14 @@ const SignIn = () => {
         <form onSubmit={formik.handleSubmit}>
           <Input
             type="text"
+            icon={email}
             {...formik.getFieldProps("email")}
             placeholder="E-mail"
           />
 
           <Input
             type="password"
+            icon={key}
             {...formik.getFieldProps("password")}
             placeholder="Password"
           />
