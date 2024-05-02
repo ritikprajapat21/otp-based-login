@@ -4,10 +4,12 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useAuth } from "./context/auth";
+import Button from "./components/Button";
+import { toast } from "react-hot-toast";
 
 function App() {
   const [count, setCount] = useState(0);
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,10 +18,18 @@ function App() {
     }
   }, [auth, navigate]);
 
+  const onClick = () => {
+    setAuth({});
+    toast.success("Logout Successful");
+  };
+
   if (auth?.email) {
     return (
       <>
         <div>
+          <Button onClick={onClick} className="absolute right-4 top-4">
+            Logout
+          </Button>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />
           </a>
