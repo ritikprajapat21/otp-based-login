@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import PrivateRouter from "./route/PrivateRoute";
 import SignUp from "./route/SignUp";
 import { AuthProvider } from "./context/auth.jsx";
 import SignIn from "./route/SignIn/index.jsx";
@@ -30,12 +29,7 @@ const router = createBrowserRouter([
     path: "/otp",
     element: <OTP />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/private",
-    element: <PrivateRouter />,
-    errorElement: <ErrorPage />,
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
