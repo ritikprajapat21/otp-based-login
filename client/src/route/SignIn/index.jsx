@@ -90,8 +90,8 @@ const SignIn = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "ritik@gmail.com",
-      password: "123456",
+      email: "",
+      password: "",
     },
     validateOnBlur: false,
     validateOnChange: false,
@@ -122,14 +122,14 @@ const SignIn = () => {
             type="text"
             icon={email}
             {...formik.getFieldProps("email")}
-            placeholder="E-mail"
+            placeholder="Enter your registered email"
           />
 
           <Input
             type="password"
             icon={key}
             {...formik.getFieldProps("password")}
-            placeholder="Password"
+            placeholder="Enter your password"
           />
 
           <Button type="submit" className="mt-2">

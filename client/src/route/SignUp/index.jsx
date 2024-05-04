@@ -64,10 +64,10 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "ritik",
-      email: "ritik@gmail.com",
-      password: "123456",
-      rePassword: "123456",
+      name: "",
+      email: "",
+      password: "",
+      rePassword: "",
     },
     validate: validateSignUp,
     validateOnBlur: false,
@@ -92,21 +92,21 @@ const SignUp = () => {
             type="text"
             icon={user}
             {...formik.getFieldProps("name")}
-            placeholder="First and last name"
+            placeholder="Enter your name"
           />
 
           <Input
             type="email"
             icon={email}
             {...formik.getFieldProps("email")}
-            placeholder="Email"
+            placeholder="Enter your email"
           />
 
           <Input
             type="password"
             icon={key}
             {...formik.getFieldProps("password")}
-            placeholder="Password"
+            placeholder="Enter your password"
             className="mb-0"
           />
           <div className="flex flex-row mt-0 mb-1">
@@ -119,7 +119,7 @@ const SignUp = () => {
             type="password"
             icon={key}
             {...formik.getFieldProps("rePassword")}
-            placeholder="Re-enter password"
+            placeholder="Re-enter your password"
           />
 
           <Button type="submit">Register</Button>
